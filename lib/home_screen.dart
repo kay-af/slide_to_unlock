@@ -6,53 +6,72 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Positioned.fill(
-            child: Image.asset(
-              "assets/images/wallpaper.jpg",
-              fit: BoxFit.cover,
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            Positioned.fill(
+              child: Image.asset(
+                "assets/images/wallpaper.jpg",
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+            Positioned(
+              left: 16,
+              top: 16,
+              child: SizedBox(
+                width: 70,
+                height: 98,
+                child: GestureDetector(
+                  onTap: () => Navigator.of(context).pop(),
                   child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: MainAxisSize.max,
                     children: [
-                      Text(
-                        "Thank you so much for watching.",
-                        style: Theme.of(context).textTheme.titleLarge,
-                        textAlign: TextAlign.center,
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.grey,
+                            ),
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                Colors.blueGrey.shade700,
+                                Colors.blueGrey.shade800,
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+                          child: const Icon(
+                            CupertinoIcons.lock_circle_fill,
+                            size: 48,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
-                      const SizedBox(height: 16),
-                      Text(
-                        "If you like my content, please leave a like and subscribe to my channel",
-                        style: Theme.of(context).textTheme.titleMedium,
-                        textAlign: TextAlign.center,
+                      const SizedBox(height: 8),
+                      SizedBox(
+                        height: 20,
+                        child: Text(
+                          "Lock",
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: Colors.white,
+                                  ),
+                        ),
                       ),
-                      const SizedBox(height: 16),
-                      Text(
-                        ":)",
-                        style: Theme.of(context).textTheme.displayMedium,
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 16),
-                      const CupertinoNavigationBarBackButton(),
                     ],
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

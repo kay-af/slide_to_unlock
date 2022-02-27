@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:slide_to_unlock/home_screen.dart';
 import 'package:slide_to_unlock/lock_screen.dart';

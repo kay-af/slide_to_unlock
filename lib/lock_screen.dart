@@ -97,82 +97,68 @@ class LockScreen extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: SlideAction(
-                        trackBuilder: (context, state) {
+                        thumbWidth: 80,
+                        trackBuilder: (buildContext, currentState) {
                           return Container(
                             decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.grey,
-                                width: 1,
-                              ),
                               gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
                                 colors: [
                                   Colors.black,
                                   Colors.grey.shade800,
                                 ],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
                               ),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.black12,
-                                  blurRadius: 8,
-                                ),
-                              ],
-                              borderRadius: BorderRadius.circular(16),
+                              border: Border.all(
+                                color: Colors.grey,
+                              ),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(16),
+                              ),
                             ),
-                            child: Opacity(
-                              opacity: lerpDouble(
-                                1,
-                                0,
-                                (state.thumbFractionalPosition * 2)
+                            child: Center(
+                              child: Opacity(
+                                opacity: lerpDouble(
+                                        1,
+                                        0,
+                                        currentState.thumbFractionalPosition *
+                                            2)!
                                     .clamp(0.0, 1.0),
-                              )!,
-                              child: Align(
-                                alignment: const Alignment(0.35, 0),
                                 child: Text(
-                                  "Slide To Unlock",
+                                  "Slide to unlock",
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleLarge
                                       ?.copyWith(
                                         color: Colors.white,
-                                        fontWeight: FontWeight.bold,
                                       ),
                                 ),
                               ),
                             ),
                           );
                         },
-                        thumbBuilder: (context, state) {
+                        thumbBuilder: (context, currentState) {
                           return Container(
                             margin: const EdgeInsets.all(4.0),
                             decoration: BoxDecoration(
                               gradient: const LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
                                 colors: [
                                   Colors.white,
                                   Colors.grey,
                                 ],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
                               ),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.black12,
-                                  blurRadius: 8,
-                                ),
-                              ],
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Center(
-                              child: Icon(
-                                CupertinoIcons.arrow_right,
-                                color: Colors.grey.shade700,
-                                size: 32,
+                              border: Border.all(
+                                color: Colors.grey,
+                              ),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(12),
                               ),
                             ),
+                            child: const Icon(CupertinoIcons.arrow_right),
                           );
                         },
-                        thumbWidth: 80,
                         action: () async {
                           await Navigator.of(context).pushNamed("/home");
                         },
